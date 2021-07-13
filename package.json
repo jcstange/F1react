@@ -7,18 +7,28 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "@expo/ngrok": "^2.4.3",
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/native": "^5.9.4",
+    "@react-navigation/stack": "^5.14.5",
     "expo": "~42.0.0",
     "expo-splash-screen": "~0.11.2",
     "expo-status-bar": "~1.0.4",
-    "expo-updates": "~0.8.0",
+    "expo-updates": "~0.8.1",
+    "nodejs": "0.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-native": "~0.63.4",
+    "react-native": "^0.64.2",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-reanimated": "~2.2.0",
+    "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
-    "react-native-unimodules": "~0.14.3",
-    "react-native-web": "~0.13.12"
+    "react-native-unimodules": "^0.14.5",
+    "react-native-web": "^0.17.1",
+    "react-native-webview": "11.6.2",
+    "react-navigation": "^4.4.4",
+    "react-navigation-stack": "^2.10.4",
+    "stack-utils": "^2.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

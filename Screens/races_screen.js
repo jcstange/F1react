@@ -27,7 +27,6 @@ export class RacesScreen extends React.Component {
         fetch(`http://ergast.com/api/f1/${this.props.route.params.season}/results.json?limit=400`)
         .then((response) => response.json())
         .then((json) => { 
-            console.log(json.MRData.RaceTable.Races) 
             this.setState({data: json.MRData.RaceTable.Races})
         })
         .catch((error) => console.error(error))

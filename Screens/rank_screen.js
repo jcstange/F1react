@@ -8,10 +8,6 @@ export class RankScreen extends React.Component {
         super(props)
     }
 
-    componentDidMount(){
-        console.log("Props ", this.props)
-    }
-
     render() {
         const { race } = this.props.route.params
 

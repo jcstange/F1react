@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 
 export class RankAdapter extends React.Component {
     constructor(props) {
@@ -23,6 +22,8 @@ export class RankAdapter extends React.Component {
     }
 }
 
+const deviceWidth = Dimensions.get('window').width
+
 const styles = StyleSheet.create({
   image: {
     width: 120, 
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
   row:{
     flexDirection: 'row',
     height: 120,
+    width: deviceWidth,
     justifyContent: 'flex-start',
     alignContent: 'center', 
     backgroundColor: '#333333',

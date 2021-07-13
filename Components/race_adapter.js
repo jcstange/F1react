@@ -31,7 +31,7 @@ export class RaceAdapter extends React.Component {
 const styles = StyleSheet.create({
   image: {
     width: 120, 
-    heigth: 120,
+    height: 120,
   },
   row:{
     flexDirection: 'row',

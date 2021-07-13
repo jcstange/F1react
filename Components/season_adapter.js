@@ -30,7 +30,7 @@ export class SeasonAdapter extends React.Component {
 const styles = StyleSheet.create({
   image: {
     width: 90, 
-    heigth: 90,
+    height: 90,
   },
   row:{
     flexDirection: 'row',

@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Homescreen } from "./Screens/home_screen"
 import { RacesScreen } from "./Screens/races_screen"
+import { RankScreen } from "./Screens/rank_screen"
 
 const Stack = createStackNavigator()
 
@@ -18,7 +19,11 @@ const App = () => {
         />
         <Stack.Screen
           component={ RacesScreen }
-          name = 'RacesScreen'
+          name = 'Races'
+        />
+        <Stack.Screen
+          component={ RankScreen }
+          name = 'Rank'
         />
       </Stack.Navigator>
     </NavigationContainer>

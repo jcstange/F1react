@@ -1,27 +1,23 @@
+
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-export class SeasonAdapter extends React.Component {
+export class RankAdapter extends React.Component {
     constructor(props) {
         super(props)
     }
 
     render() {
+        const { item } = this.props
         return (
             <View style={styles.row}>
                 <Image
                   style={ styles.image }
-                  source={{ uri: 'https://www.shareicon.net/data/512x512/2016/05/26/771264_cup_512x512.png'}}                 
-                />
+                  source={{ uri: 'https://image.flaticon.com/icons/png/512/164/164443.png' }} 
+                  />
                 <Text 
-                  onPress = { 
-                    () => this.props.navigation.navigate(
-                      'Races',
-                      { season: this.props.item.season }
-                    ) 
-                  }
                   style={ styles.text }
-                > {this.props.item.season}</Text>
+                > {item.position}) {item.Driver.givenName} {item.Driver.familyName} - {item.Constructor.name} : {item.Time ? item.Time.time : "-"}</Text>
             </View> 
         )
     }
@@ -29,8 +25,8 @@ export class SeasonAdapter extends React.Component {
 
 const styles = StyleSheet.create({
   image: {
-    width: 90, 
-    heigth: 90,
+    width: 120, 
+    heigth: 120,
   },
   row:{
     flexDirection: 'row',

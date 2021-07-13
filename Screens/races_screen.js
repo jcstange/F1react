@@ -16,14 +16,14 @@ export class RacesScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = { data: [] }
-        this.getPilots()
+        this.getRaces()
     }
 
     componentDidMount() {
       console.log("Season: ", this.props.route.params.season)
     }
 
-    getPilots() {
+    getRaces() {
         fetch(`http://ergast.com/api/f1/${this.props.route.params.season}/results.json?limit=400`)
         .then((response) => response.json())
         .then((json) => { 
@@ -40,7 +40,7 @@ export class RacesScreen extends React.Component {
         <View style={styles.container}>
           <Text 
             style={styles.orange} 
-          > { season } Season
+          > { season } Season - Races
           </Text>
           <FlatList
             style= { styles.flatlist }

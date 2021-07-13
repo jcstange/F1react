@@ -1,17 +1,13 @@
-
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-export class RacesAdapter extends React.Component {
+export class RaceAdapter extends React.Component {
     constructor(props) {
         super(props)
     }
 
-    componentDidMount() {
-      console.log("NAV: ", this.props.route.params.item)
-    }
-
     render() {
+        const { item } = this.props
         return (
             <View style={styles.row}>
                 <Image
@@ -19,9 +15,14 @@ export class RacesAdapter extends React.Component {
                   source={{ uri: 'https://image.flaticon.com/icons/png/512/147/147216.png' }} 
                   />
                 <Text 
-                  onPress = { () => alert(this.props.item.raceName) }
+                  onPress = { 
+                    () => this.props.navigation.navigate(
+                      'Rank',
+                      { race: this.props.item }
+                    ) 
+                  }
                   style={ styles.text }
-                > {this.props.item.raceName} - {this.props.item.date }</Text>
+                > {item.raceName} ({item.Circuit.circuitName}) -> {item.date} </Text>
             </View> 
         )
     }

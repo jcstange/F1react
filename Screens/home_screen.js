@@ -28,7 +28,6 @@ export class Homescreen extends React.Component {
         fetch('http://ergast.com/api/f1/seasons.json?limit=72')
         .then((response) => response.json())
         .then((json) => { 
-            console.log(json.MRData.SeasonTable.Seasons) 
             this.setState({data: json.MRData.SeasonTable.Seasons})
         })
         .catch((error) => console.error(error))

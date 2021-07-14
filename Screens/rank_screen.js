@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native'
 import { RankAdapter } from '../Components/rank_adapter'
 
 export class RankScreen extends React.Component {
@@ -22,7 +22,7 @@ export class RankScreen extends React.Component {
             data= { race.Results }
             keyExtractor= {({ id }, index) => id }
             renderItem= {({item}) => (
-              <RankAdapter item={ item } navigation={ this.props.navigation }/>
+              <RankAdapter raceResult={ item } navigation={ this.props.navigation }/>
             )} 
            />
           <Text style={styles.footer}>Footer</Text>

@@ -1,27 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, View, 
+  Image, 
+  Dimensions 
+} from 'react-native';
+import type { 
+  RaceResult
+} from '../Types/race_types'
 
-export class SeasonAdapter extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+interface Props {
+   raceResult: RaceResult;
+}
 
+export class RankAdapter extends React.Component<Props> {
     render() {
+        const { raceResult } = this.props;
+
         return (
             <View style={styles.row}>
                 <Image
                   style={ styles.image }
-                  source={{ uri: 'https://www.shareicon.net/data/512x512/2016/05/26/771264_cup_512x512.png'}}                 
-                />
+                  source={{ uri: 'https://image.flaticon.com/icons/png/512/164/164443.png' }} 
+                  />
                 <Text 
-                  onPress = { 
-                    () => this.props.navigation.navigate(
-                      'Races',
-                      { season: this.props.item.season }
-                    ) 
-                  }
                   style={ styles.text }
-                > {this.props.item.season}</Text>
+                > {raceResult.position}) {raceResult.Driver.givenName} {raceResult.Driver.familyName} - {raceResult.Constructor.name} : {raceResult.Time ? raceResult.Time.time : "-"}</Text>
             </View> 
         )
     }
@@ -31,8 +35,8 @@ const deviceWidth = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   image: {
-    width: 90, 
-    height: 90,
+    width: 120, 
+    height: 120,
   },
   row:{
     flexDirection: 'row',
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: '#fff',
     backgroundColor: '#333333',
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: 'bold',
     alignSelf: 'center'
   },

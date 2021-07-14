@@ -1,22 +1,32 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
+import type { Season } from '../Types/season'
 
-export class RankAdapter extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+type Props = {
+   season: Season;
+   navigation: NavigationScreenProp<any,any>;
+}
 
+export class SeasonAdapter extends React.Component<Props> {
     render() {
-        const { item } = this.props
+        const { season } = this.props
+        const { navigation } = this.props
         return (
             <View style={styles.row}>
                 <Image
                   style={ styles.image }
-                  source={{ uri: 'https://image.flaticon.com/icons/png/512/164/164443.png' }} 
-                  />
+                  source={{ uri: 'https://www.shareicon.net/data/512x512/2016/05/26/771264_cup_512x512.png'}}                 
+                />
                 <Text 
+                  onPress = { 
+                    () => navigation.navigate(
+                      'Races',
+                      { season: season.season }
+                    ) 
+                  }
                   style={ styles.text }
-                > {item.position}) {item.Driver.givenName} {item.Driver.familyName} - {item.Constructor.name} : {item.Time ? item.Time.time : "-"}</Text>
+                > {season.season}</Text>
             </View> 
         )
     }
@@ -26,8 +36,8 @@ const deviceWidth = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   image: {
-    width: 120, 
-    height: 120,
+    width: 90, 
+    height: 90,
   },
   row:{
     flexDirection: 'row',

@@ -1,13 +1,17 @@
+import { NavigationScreenProp } from 'react-navigation';
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { Race } from '../Types/race_types';
 
-export class RaceAdapter extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+type Props = {
+  race: Race;
+  navigation: NavigationScreenProp<any,any>;
+}
 
+export class RaceAdapter extends React.Component<Props> {
     render() {
-        const { item } = this.props
+        const { race } = this.props
+        const { navigation } = this.props
         return (
             <View style={styles.row}>
                 <Image
@@ -18,11 +22,11 @@ export class RaceAdapter extends React.Component {
                   onPress = { 
                     () => this.props.navigation.navigate(
                       'Rank',
-                      { race: this.props.item }
+                      { race: this.props.race }
                     ) 
                   }
                   style={ styles.text }
-                > {item.raceName} ({item.Circuit.circuitName}) -> {item.date} </Text>
+                > {race.raceName} ({race.Circuit.circuitName}) -> {race.date} </Text>
             </View> 
         )
     }
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: '#fff',
     backgroundColor: '#333333',
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: 'bold',
     alignSelf: 'center'
   },

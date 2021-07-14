@@ -46,7 +46,7 @@ export class RacesScreen extends React.Component {
             data= { this.state.data }
             keyExtractor= {({ id }, index) => id }
             renderItem= {({item}) => (
-              <RaceAdapter item={ item } navigation={ this.props.navigation }/>
+              <RaceAdapter race={ item } navigation={ this.props.navigation }/>
             )} 
            />
           <Text style={styles.footer}>Footer</Text>

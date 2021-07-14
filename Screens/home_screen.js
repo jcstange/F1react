@@ -42,7 +42,7 @@ export class Homescreen extends React.Component {
               keyExtractor= {({ id }, index) => id }
               renderItem= {({item}) => (
                   <SeasonAdapter 
-                    item={ item } 
+                    season={ item } 
                     navigation= {this.props.navigation}
                   />
               )} 

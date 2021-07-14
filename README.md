@@ -10,3 +10,4 @@ React native project in JS that shows all the F1 results separated by Season - R
 ## TODO: 
 - Repository
 - UI improvement
+- TS Script

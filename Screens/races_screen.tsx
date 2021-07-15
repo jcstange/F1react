@@ -1,26 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
 import { RaceAdapter } from '../Components/race_adapter'
+import { NavigationScreenProp } from 'react-navigation';
+import { RouteProp } from '@react-navigation/native'
+import type { Race } from '../Types/race_types'
 
-export const navigationOption = ({ navigation }) => ({
-    title: "F1 History",
-    hearderStyle: {
-        backgroundColor: 'transparent',
-        borderBottomColor: 'transparent',
-    },
-    headerTransparent: true,
-    headerBackTitle: null
-})
+type RootStackParamList = {
+  season: string
+}
 
-export class RacesScreen extends React.Component {
+type RaceScreenRouteProp = RouteProp<RootStackParamList, 'season'>
+
+type Props = {
+  route: RaceScreenRouteProp,
+  navigation: NavigationScreenProp<any,any>;
+}
+
+export class RacesScreen extends React.Component<Props> {
     constructor(props) {
         super(props)
         this.state = { data: [] }
         this.getRaces()
-    }
-
-    componentDidMount() {
-      console.log("Season: ", this.props.route.params.season)
     }
 
     getRaces() {
@@ -33,7 +33,8 @@ export class RacesScreen extends React.Component {
     }
 
     render() {
-        const { season } = this.props.route.params
+        const { season } : string = this.props.route.params
+        const { navigation } : NavigationScreenProp<any, any> = this.props
 
         return (
         <View style={styles.container}>
@@ -44,9 +45,9 @@ export class RacesScreen extends React.Component {
           <FlatList
             style= { styles.flatlist }
             data= { this.state.data }
-            keyExtractor= {({ id }, index) => id }
+            keyExtractor= {({ date }, index) => date }
             renderItem= {({item}) => (
-              <RaceAdapter race={ item } navigation={ this.props.navigation }/>
+              <RaceAdapter race={ item } navigation={ navigation }/>
             )} 
            />
           <Text style={styles.footer}>Footer</Text>

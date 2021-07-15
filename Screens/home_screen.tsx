@@ -1,7 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
 import { SeasonAdapter } from '../Components/season_adapter'
+import { NavigationScreenProp } from 'react-navigation';
 
+type Props = {
+  navigation: NavigationScreenProp<any,any>;
+}
 
 export const navigationOption = ({ navigation }) => ({
     title: "F1 History",
@@ -13,7 +17,7 @@ export const navigationOption = ({ navigation }) => ({
     headerBackTitle: null
 })
 
-export class Homescreen extends React.Component {
+export class Homescreen extends React.Component<Props> {
     constructor(props) {
         super(props)
         this.state = { data: [] }
@@ -39,7 +43,7 @@ export class Homescreen extends React.Component {
             <FlatList
               style= { styles.flatlist }
               data= { this.state.data.sort((a,b) => parseInt(b.season)-parseInt(a.season))}
-              keyExtractor= {({ id }, index) => id }
+              keyExtractor= {({ season }, index) => season }
               renderItem= {({item}) => (
                   <SeasonAdapter 
                     season={ item } 

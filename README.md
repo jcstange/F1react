@@ -5,9 +5,8 @@ React native project in JS that shows all the F1 results separated by Season - R
 ## Nice things: 
 - Screens are modularized somehow
 - Components are modulized somehow
-- 
+- TS 
 
 ## TODO: 
 - Repository
 - UI improvement
-- TS Script

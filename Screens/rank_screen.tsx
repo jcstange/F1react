@@ -2,15 +2,25 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native'
 import { RankAdapter } from '../Components/rank_adapter'
+import type { Race } from '../Types/race_types'
+import { NavigationScreenProp } from 'react-navigation';
+import { RouteProp } from '@react-navigation/native'
 
-export class RankScreen extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+type RootStackParamList = {
+  race: Race
+}
 
+type RankScreenRouteProp = RouteProp<RootStackParamList, 'race'>
+
+type Props = {
+  route: RankScreenRouteProp;
+  navigation: NavigationScreenProp<any,any>;
+}
+
+export class RankScreen extends React.Component<Props> {
     render() {
-        const { race } = this.props.route.params
-
+        const { race }  = this.props.route.params
+        const { navigation } = this.props
         return (
         <View style={styles.container}>
           <Text 
@@ -20,9 +30,9 @@ export class RankScreen extends React.Component {
           <FlatList
             style= { styles.flatlist }
             data= { race.Results }
-            keyExtractor= {({ id }, index) => id }
+            keyExtractor= {({ position }, index) => position}
             renderItem= {({item}) => (
-              <RankAdapter raceResult={ item } navigation={ this.props.navigation }/>
+              <RankAdapter raceResult={ item } />
             )} 
            />
           <Text style={styles.footer}>Footer</Text>

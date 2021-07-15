@@ -20,9 +20,9 @@ export class RaceAdapter extends React.Component<Props> {
                   />
                 <Text 
                   onPress = { 
-                    () => this.props.navigation.navigate(
+                    () => navigation.navigate(
                       'Rank',
-                      { race: this.props.race }
+                      { race: race }
                     ) 
                   }
                   style={ styles.text }

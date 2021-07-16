@@ -30,7 +30,7 @@ export class RacesScreen extends React.Component<Props, State> {
     }
 
     getRaces() {
-        fetch(`http://ergast.com/api/f1/${this.props.route.params.season}/results.json?limit=400`)
+        fetch(`https://ergast.com/api/f1/${this.props.route.params.season}/results.json?limit=400`)
         .then((response) => response.json())
         .then((json) => { 
             this.setState({races: json.MRData.RaceTable.Races})

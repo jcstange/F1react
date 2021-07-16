@@ -24,7 +24,7 @@ export class Homescreen extends React.Component<Props, State> {
     }
 
     getSeasons() {
-        fetch('http://ergast.com/api/f1/seasons.json?limit=72')
+        fetch('https://ergast.com/api/f1/seasons.json?limit=72')
         .then((response) => response.json())
         .then((json) => { 
             this.setState({seasons: json.MRData.SeasonTable.Seasons})

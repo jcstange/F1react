@@ -25,8 +25,8 @@ export class RankAdapter extends React.Component<Props> {
                   />
                 <Text 
                   style={ styles.text }
-                > {raceResult.position}) {raceResult.Driver.givenName} {raceResult.Driver.familyName} - {raceResult.Constructor.name} : {raceResult.Time ? raceResult.Time.time : "-"}</Text>
-            </View> 
+                > {raceResult.position}) {raceResult.Driver?.givenName} {raceResult.Driver?.familyName} - {raceResult.Constructor?.name} : {raceResult.Time?.time}</Text>
+            </View>
         )
     }
 }

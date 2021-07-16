@@ -6,20 +6,26 @@ import { RouteProp } from '@react-navigation/native'
 import type { Race } from '../Types/race_types'
 
 type RootStackParamList = {
-  season: string
+  Season: {
+    season: string
+  } 
 }
 
-type RaceScreenRouteProp = RouteProp<RootStackParamList, 'season'>
+type RaceScreenRouteProp = RouteProp<RootStackParamList, 'Season'>
 
 type Props = {
   route: RaceScreenRouteProp,
   navigation: NavigationScreenProp<any,any>;
 }
 
-export class RacesScreen extends React.Component<Props> {
-    constructor(props) {
+type State = {
+  races: Race[]
+}
+
+export class RacesScreen extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props)
-        this.state = { data: [] }
+        this.state = { races: [] }
         this.getRaces()
     }
 
@@ -27,14 +33,14 @@ export class RacesScreen extends React.Component<Props> {
         fetch(`http://ergast.com/api/f1/${this.props.route.params.season}/results.json?limit=400`)
         .then((response) => response.json())
         .then((json) => { 
-            this.setState({data: json.MRData.RaceTable.Races})
+            this.setState({races: json.MRData.RaceTable.Races})
         })
         .catch((error) => console.error(error))
     }
 
     render() {
-        const { season } : string = this.props.route.params
-        const { navigation } : NavigationScreenProp<any, any> = this.props
+        const  season : string = this.props.route.params.season
+        const  navigation : NavigationScreenProp<any, any> = this.props.navigation
 
         return (
         <View style={styles.container}>
@@ -44,8 +50,8 @@ export class RacesScreen extends React.Component<Props> {
           </Text>
           <FlatList
             style= { styles.flatlist }
-            data= { this.state.data }
-            keyExtractor= {({ date }, index) => date }
+            data= { this.state.races }
+            keyExtractor= {({ round }, index) => round }
             renderItem= {({item}) => (
               <RaceAdapter race={ item } navigation={ navigation }/>
             )} 

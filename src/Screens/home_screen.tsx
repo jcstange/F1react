@@ -2,25 +2,20 @@ import React from 'react';
 import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
 import { SeasonAdapter } from '../Components/season_adapter'
 import { NavigationScreenProp } from 'react-navigation';
+import { Season } from '../Types/season'
 
 type Props = {
   navigation: NavigationScreenProp<any,any>;
 }
 
-export const navigationOption = ({ navigation }) => ({
-    title: "F1 History",
-    hearderStyle: {
-        backgroundColor: 'transparent',
-        borderBottomColor: 'transparent',
-    },
-    headerTransparent: true,
-    headerBackTitle: null
-})
+type State = {
+  seasons: Season[] | undefined
+}
 
-export class Homescreen extends React.Component<Props> {
-    constructor(props) {
+export class Homescreen extends React.Component<Props, State> {
+    constructor(props : Props) {
         super(props)
-        this.state = { data: [] }
+        this.state = { seasons: [] }
         this.getSeasons()
     }
     
@@ -32,7 +27,7 @@ export class Homescreen extends React.Component<Props> {
         fetch('http://ergast.com/api/f1/seasons.json?limit=72')
         .then((response) => response.json())
         .then((json) => { 
-            this.setState({data: json.MRData.SeasonTable.Seasons})
+            this.setState({seasons: json.MRData.SeasonTable.Seasons})
         })
         .catch((error) => console.error(error))
     }
@@ -42,7 +37,7 @@ export class Homescreen extends React.Component<Props> {
         <Text style={styles.orange} onPress={this.sayHello}>F1 History</Text>
             <FlatList
               style= { styles.flatlist }
-              data= { this.state.data.sort((a,b) => parseInt(b.season)-parseInt(a.season))}
+              data= { this.state.seasons?.sort((a,b) => parseInt(b.season)-parseInt(a.season))}
               keyExtractor= {({ season }, index) => season }
               renderItem= {({item}) => (
                   <SeasonAdapter 

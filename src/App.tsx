@@ -8,11 +8,11 @@ import { RankScreen } from "./Screens/rank_screen"
 
 const Stack = createStackNavigator()
 
-const App = () => {
+export const App = () => {
   return (
   <SafeAreaProvider>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={ Homescreen }>
+      <Stack.Navigator >
         <Stack.Screen
           component={ Homescreen }
           name = 'F1'

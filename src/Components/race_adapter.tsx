@@ -26,7 +26,7 @@ export class RaceAdapter extends React.Component<Props> {
                     ) 
                   }
                   style={ styles.text }
-                > {race.raceName} ({race.Circuit.circuitName}) -> {race.date} </Text>
+                > {race.raceName} ({race.Circuit ? race.Circuit.circuitName : "" } ) - {race.date} </Text>
             </View> 
         )
     }

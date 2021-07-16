@@ -1,13 +1,13 @@
 
 export type Race = {
     season?: string;
-    round?: string;
+    round: string;
     url?: string;
     raceName?: string;
     Circuit?: Circuit;
     date?: string;
     time?: string;
-    Results?: RaceResult[];
+    Results: RaceResult[];
 }
 
 export type Circuit = {
@@ -26,7 +26,7 @@ export type CircuitLocation = {
 
 export type RaceResult = {
     number?: string;
-    position?: string;
+    position: string;
     positionText?: string;
     points?: string;
     Driver?: Driver;

@@ -2,15 +2,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native'
 import { RankAdapter } from '../Components/rank_adapter'
-import type { Race } from '../Types/race_types'
+import type { Race, RaceResult } from '../Types/race_types'
 import { NavigationScreenProp } from 'react-navigation';
 import { RouteProp } from '@react-navigation/native'
 
 type RootStackParamList = {
-  race: Race
+  Race: { race: Race }
 }
 
-type RankScreenRouteProp = RouteProp<RootStackParamList, 'race'>
+type RankScreenRouteProp = RouteProp<RootStackParamList, 'Race'>
 
 type Props = {
   route: RankScreenRouteProp;
@@ -20,17 +20,20 @@ type Props = {
 export class RankScreen extends React.Component<Props> {
     render() {
         const { race }  = this.props.route.params
+        console.log("params", this.props.route)
+        console.log("Race: ", race)
+        console.log("Results: ", race.Results)
         const { navigation } = this.props
         return (
         <View style={styles.container}>
           <Text 
             style={styles.orange} 
-          > { race.season } Season - { race.Circuit.circuitName }
+          > { race.season } Season - { race.Circuit?.circuitName }
           </Text>
           <FlatList
             style= { styles.flatlist }
             data= { race.Results }
-            keyExtractor= {({ position }, index) => position}
+            keyExtractor= {({ position }, index) => position }
             renderItem= {({item}) => (
               <RankAdapter raceResult={ item } />
             )} 

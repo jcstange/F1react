@@ -28,7 +28,7 @@ jobs:
       - name: Build web
         run: |
           yarn install
-          npm run build:web
+          yarn run web:build
       - name: Publish it gh-pages
         run: |
           cd build

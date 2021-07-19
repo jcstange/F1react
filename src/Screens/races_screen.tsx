@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
-import { RaceAdapter } from '../Components/race_adapter'
+import { RaceAdapter } from '../Components/race_adapter';
 import { NavigationScreenProp } from 'react-navigation';
-import { RouteProp } from '@react-navigation/native'
-import type { Race } from '../Types/race_types'
+import { RouteProp } from '@react-navigation/native';
+import type { Race } from '../Types/race_types';
 
 type RootStackParamList = {
   Season: {
@@ -13,53 +13,44 @@ type RootStackParamList = {
 
 type RaceScreenRouteProp = RouteProp<RootStackParamList, 'Season'>
 
-type Props = {
+type RacesScreenProps = {
   route: RaceScreenRouteProp,
   navigation: NavigationScreenProp<any,any>;
 }
 
-type State = {
-  races: Race[]
-}
+export const RacesScreen: React.FC<RacesScreenProps> = ({ route, navigation }) => {
 
-export class RacesScreen extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props)
-        this.state = { races: [] }
-        this.getRaces()
-    }
+  const [ state, setState ] = React.useState<Race[]>()
+  const { season } = route.params
 
-    getRaces() {
-        fetch(`https://ergast.com/api/f1/${this.props.route.params.season}/results.json?limit=400`)
-        .then((response) => response.json())
-        .then((json) => { 
-            this.setState({races: json.MRData.RaceTable.Races})
-        })
-        .catch((error) => console.error(error))
-    }
+  React.useEffect(() => { getRaces() })
 
-    render() {
-        const  season : string = this.props.route.params.season
-        const  navigation : NavigationScreenProp<any, any> = this.props.navigation
+  function getRaces() {
+      fetch(`https://ergast.com/api/f1/${season}/results.json?limit=400`)
+      .then((response) => response.json())
+      .then((json) => { 
+          setState(json.MRData.RaceTable.Races)
+      })
+      .catch((error) => console.error(error))
+  }
 
-        return (
-        <View style={styles.container}>
-          <Text 
-            style={styles.orange} 
-          > { season } Season - Races
-          </Text>
-          <FlatList
-            style= { styles.flatlist }
-            data= { this.state.races }
-            keyExtractor= {({ round }, index) => round }
-            renderItem= {({item}) => (
-              <RaceAdapter race={ item } navigation={ navigation }/>
-            )} 
-           />
-          <Text style={styles.footer}>Footer</Text>
-        </View>
-      )
-    }
+  return (
+  <View style={styles.container}>
+    <Text 
+      style={styles.orange} 
+    > { season } Season - Races
+    </Text>
+    <FlatList
+      style= { styles.flatlist }
+      data= { state }
+      keyExtractor= {({ round }, index) => round }
+      renderItem= {({item}) => (
+        <RaceAdapter race={ item } navigation={ navigation }/>
+      )} 
+      />
+    <Text style={styles.footer}>Footer</Text>
+  </View>
+  )
 }
 
 const deviceWidth = Dimensions.get('window').width

@@ -9,38 +9,31 @@ import type {
   RaceResult
 } from '../Types/race_types'
 
-interface Props {
+type RankProps = {
    raceResult: RaceResult;
 }
 
-export class RankAdapter extends React.Component<Props> {
-    render() {
-        const { raceResult } = this.props;
-
-        return (
-            <View style={styles.row}>
-                <Image
-                  style={ styles.image }
-                  source={{ uri: 'https://image.flaticon.com/icons/png/512/164/164443.png' }} 
-                  />
-                <Text 
-                  style={ styles.text }
-                > {raceResult.position}) {raceResult.Driver?.givenName} {raceResult.Driver?.familyName} - {raceResult.Constructor?.name} : {raceResult.Time?.time}</Text>
-            </View>
-        )
-    }
-}
+export const RankAdapter: React.FC<RankProps> = ({ raceResult }) => 
+  <View style={styles.row}>
+    <Image
+      style={styles.image}
+      source={{ uri: 'https://image.flaticon.com/icons/png/512/164/164443.png' }} />
+    <Text
+      style={styles.text}
+    > {raceResult.position}) {raceResult.Driver?.givenName} {raceResult.Driver?.familyName} - {raceResult.Constructor?.name}: {raceResult.Time?.time}</Text>
+  </View>;
 
 const deviceWidth = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   image: {
-    width: 120, 
-    height: 120,
+    width: 20, 
+    height: 20,
+    alignSelf: 'center', 
   },
   row:{
     flexDirection: 'row',
-    height: 120,
+    height: 40,
     width: deviceWidth,
     justifyContent: 'flex-start',
     alignContent: 'center', 

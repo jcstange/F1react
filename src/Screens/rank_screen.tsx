@@ -12,27 +12,20 @@ type RootStackParamList = {
 
 type RankScreenRouteProp = RouteProp<RootStackParamList, 'Race'>
 
-type Props = {
+type RankScreenProps = {
   route: RankScreenRouteProp;
   navigation: NavigationScreenProp<any,any>;
 }
 
-export class RankScreen extends React.Component<Props> {
-    render() {
-        const { race }  = this.props.route.params
-        console.log("params", this.props.route)
-        console.log("Race: ", race)
-        console.log("Results: ", race.Results)
-        const { navigation } = this.props
-        return (
+export const RankScreen:React.FC<RankScreenProps> = ({ route, navigation }) =>
         <View style={styles.container}>
           <Text 
             style={styles.orange} 
-          > { race.season } Season - { race.Circuit?.circuitName }
+          > { route.params.race.season } Season - { route.params.race.Circuit?.circuitName }
           </Text>
           <FlatList
             style= { styles.flatlist }
-            data= { race.Results }
+            data= { route.params.race.Results }
             keyExtractor= {({ position }, index) => position }
             renderItem= {({item}) => (
               <RankAdapter raceResult={ item } />
@@ -40,9 +33,6 @@ export class RankScreen extends React.Component<Props> {
            />
           <Text style={styles.footer}>Footer</Text>
         </View>
-      )
-    }
-}
 
 const deviceWidth = Dimensions.get('window').width
 

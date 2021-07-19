@@ -3,34 +3,27 @@ import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
 import type { Season } from '../Types/season'
 
-type Props = {
+type SeasonProps = {
    season: Season;
    navigation: NavigationScreenProp<any,any>;
 }
 
-export class SeasonAdapter extends React.Component<Props> {
-    render() {
-        const { season } = this.props
-        const { navigation } = this.props
-        return (
-            <View style={styles.row}>
-                <Image
-                  style={ styles.image }
-                  source={{ uri: 'https://www.shareicon.net/data/512x512/2016/05/26/771264_cup_512x512.png'}}                 
-                />
-                <Text 
-                  onPress = { 
-                    () => navigation.navigate(
-                      'Races',
-                      { season: season.season }
-                    ) 
-                  }
-                  style={ styles.text }
-                > {season.season}</Text>
-            </View> 
-        )
-    }
-}
+export const SeasonAdapter: React.FC<SeasonProps> = ({ season, navigation }) => 
+  <View style={styles.row}>
+      <Image
+        style={ styles.image }
+        source={{ uri: 'https://www.shareicon.net/data/512x512/2016/05/26/771264_cup_512x512.png'}}                 
+      />
+      <Text 
+        onPress = { 
+          () => navigation.navigate(
+            'Races',
+            { season: season.season }
+          ) 
+        }
+        style={ styles.text }
+      > {season.season}</Text>
+  </View> 
 
 const deviceWidth = Dimensions.get('window').width
 
@@ -38,6 +31,7 @@ const styles = StyleSheet.create({
   image: {
     width: 90, 
     height: 90,
+    alignSelf: 'center',
   },
   row:{
     flexDirection: 'row',

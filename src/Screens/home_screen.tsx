@@ -40,7 +40,7 @@ export class Homescreen extends React.Component<Props, State> {
               data= { this.state.seasons?.sort((a,b) => parseInt(b.season)-parseInt(a.season))}
               keyExtractor= {({ season }, index) => season }
               renderItem= {({item}) => (
-                  <SeasonAdapter 
+                  <SeasonAdapter
                     season={ item } 
                     navigation= {this.props.navigation}
                   />

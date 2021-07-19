@@ -27,13 +27,13 @@ const deviceWidth = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   image: {
-    width: 20, 
-    height: 20,
+    width: 45, 
+    height: 45,
     alignSelf: 'center', 
   },
   row:{
     flexDirection: 'row',
-    height: 40,
+    height: 60,
     width: deviceWidth,
     justifyContent: 'flex-start',
     alignContent: 'center', 
